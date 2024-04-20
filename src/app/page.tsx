@@ -1,6 +1,6 @@
+import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -13,6 +13,7 @@ export default function Home() {
           height={196}
         />
         <Link href="/posts/first-post">첫번째 글</Link>
+        <h1 className="font-bold underline text-rose-600">Hello world!</h1>
         <div className={styles.center}>
           <h1 className="title">Read this Post</h1>
 
