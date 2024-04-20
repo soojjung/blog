@@ -1,86 +1,36 @@
-import Link from "next/link";
 import Image from "next/image";
-import styles from "./page.module.css";
+import { postList } from "@/constants";
 
 export default function Home() {
   return (
     <div>
-      <main className={styles.main}>
-        <Image
-          src="/images/profile1.jpeg"
-          alt="sooya_profile"
-          width={196}
-          height={196}
-        />
-        <Link href="/posts/first-post">첫번째 글</Link>
-        <h1 className="font-bold underline text-rose-600">Hello world!</h1>
-        <div className={styles.center}>
-          <h1 className="title">Read this Post</h1>
-
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>Explore starter templates for Next.js.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+      <h1 className="max-w-md mx-auto text-3xl font-bold text-gray-800 my-4 md:max-w-2xl">
+        최근 포스팅
+      </h1>
+      {postList.map((item, index) => {
+        return (
+          <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-16">
+            <div className="md:flex">
+              <div className="md:shrink-0">
+                <Image
+                  src={item.imageUrl}
+                  alt={item.imageAlt}
+                  width={196}
+                  height={196}
+                  className="h-48 w-full object-cover md:h-full md:w-48"
+                />
+              </div>
+              <div className="p-8">
+                <h2 className="text-2xl font-bold mb-2 leading-tight text-gray-800 ">
+                  {item.title}
+                </h2>
+                <p className="mt-2 text-gray-600">{item.description}</p>
+                <p className="text-gray-400 mt-2">{item.date}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

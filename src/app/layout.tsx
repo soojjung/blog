@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Topbar from "@/components/topbar";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,7 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="bg-white">
+          <div className="max-w-5xl mx-auto px-4 ">
+            <Topbar />
+            <main>{children}</main>
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
