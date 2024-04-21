@@ -20,6 +20,7 @@ export default function Home() {
                   alt={item.imageAlt}
                   width={196}
                   height={196}
+                  priority={true}
                   className="h-48 w-full object-cover md:h-full md:w-48"
                 />
               </div>
