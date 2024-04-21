@@ -11,7 +11,7 @@ export default function Home() {
         return (
           <div
             key={`postList_${index}`}
-            className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-16"
+            className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-16 hover: cursor-pointer"
           >
             <div className="md:flex">
               <div className="md:shrink-0">

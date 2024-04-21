@@ -16,12 +16,12 @@ const Topbar = () => {
       <div>
         <ul></ul>
         <ul className="flex items-center">
-          <li className="py-3 px-4 rounded text-gray-500 hover:text-gray-600 hover:bg-gray-50">
+          <li className="py-3 px-4 rounded text-gray-500 hover:text-gray-600 hover:bg-gray-50 hover:cursor-pointer">
             <Link href={"/profile"}>
               <span>프로필</span>
             </Link>
           </li>
-          <li className="py-3 px-4 rounded text-gray-500 hover:text-gray-600 hover:bg-gray-50">
+          <li className="py-3 px-4 rounded text-gray-500 hover:text-gray-600 hover:bg-gray-50 hover:cursor-pointer">
             <Link href={"/blog"}>
               <span>블로그</span>
             </Link>
