@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Topbar = () => {
   return (
-    <header className="py-5 flex justify-between items-center">
+    <nav className="py-5 flex justify-between items-center">
       <Link href={"/"}>
         <Image
           src="/images/hourglass.jpg"
@@ -14,21 +14,26 @@ const Topbar = () => {
         />
       </Link>
       <div>
-        <Link href={"/profile"}>
-          <span className="text-gray-600 hover:text-gray-800" href="#">
-            프로필
-          </span>
-        </Link>
-        <Link href={"/blog"}>
-          <span className="text-gray-600 hover:text-gray-800 ml-6" href="#">
-            블로그
-          </span>
-        </Link>
-        <button className="text-gray-400 py-2 px-4 rounded ml-6 bg-pink-50">
-          로그인
-        </button>
+        <ul></ul>
+        <ul className="flex items-center">
+          <li className="py-3 px-4 rounded text-gray-500 hover:text-gray-600 hover:bg-gray-50">
+            <Link href={"/profile"}>
+              <span>프로필</span>
+            </Link>
+          </li>
+          <li className="py-3 px-4 rounded text-gray-500 hover:text-gray-600 hover:bg-gray-50">
+            <Link href={"/blog"}>
+              <span>블로그</span>
+            </Link>
+          </li>
+          <li>
+            <button className="py-2 px-4 rounded ml-2 text-white bg-rose-100 hover:bg-rose-200">
+              로그인
+            </button>
+          </li>
+        </ul>
       </div>
-    </header>
+    </nav>
   );
 };
 
