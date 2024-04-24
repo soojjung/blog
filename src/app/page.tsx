@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { postList } from "@/constants";
+import { recentPostList } from "@/constants";
 
 export default function Home() {
   return (
@@ -7,11 +7,11 @@ export default function Home() {
       <h1 className="max-w-md mx-auto text-3xl font-bold text-gray-800 my-4 md:max-w-2xl">
         최근 포스팅
       </h1>
-      {postList.map((item, index) => {
+      {recentPostList.map((item, index) => {
         return (
           <div
-            key={`postList_${index}`}
-            className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-16 hover: cursor-pointer"
+            key={`recentPostList_${index}`}
+            className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-16 hover: cursor-pointer group"
           >
             <div className="md:flex">
               <div className="md:shrink-0">
@@ -25,7 +25,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-8">
-                <h2 className="text-2xl font-bold mb-2 leading-tight text-gray-800 ">
+                <h2 className="text-2xl font-bold mb-2 leading-tight text-gray-700 group-hover:text-gray-950">
                   {item.title}
                 </h2>
                 <p className="mt-2 text-gray-600">{item.description}</p>

@@ -21,7 +21,7 @@ export default function RootLayout({
         <div className="bg-white">
           <div className="max-w-5xl mx-auto px-4 ">
             <Topbar />
-            <main>{children}</main>
+            <main className="pb-32">{children}</main>
           </div>
         </div>
       </body>

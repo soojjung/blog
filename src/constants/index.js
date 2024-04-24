@@ -1,4 +1,4 @@
-export const postList = [
+export const recentPostList = [
   {
     title: "자바스크립트 엔진과 비동기",
     description:
