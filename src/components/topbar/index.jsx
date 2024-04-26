@@ -7,7 +7,7 @@ const Topbar = () => {
       <Link href={"/"}>
         <Image
           src="/images/hourglass.jpg"
-          alt="hourglass"
+          alt="home"
           width={48}
           height={48}
           className="rounded-full"
