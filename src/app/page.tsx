@@ -9,11 +9,11 @@ export default function Home() {
       </h1>
       {recentPostList.map((item, index) => {
         return (
-          <article
+          <div
             key={`recentPostList_${index}`}
             className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-16 hover: cursor-pointer group"
           >
-            <div className="md:flex">
+            <article className="md:flex">
               <picture className="md:shrink-0">
                 <Image
                   src={item.imageUrl}
@@ -31,8 +31,8 @@ export default function Home() {
                 <p className="mt-2 text-gray-600">{item.description}</p>
                 <p className="text-gray-400 mt-2">{item.date}</p>
               </section>
-            </div>
-          </article>
+            </article>
+          </div>
         );
       })}
     </main>
