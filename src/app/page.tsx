@@ -1,95 +1,40 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import { recentPostList } from "@/constants";
 
-export default function Home() {
+export default async function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div>
+      <h1 className="max-w-md mx-auto text-3xl font-bold text-gray-800 my-4 md:max-w-2xl">
+        최근 포스팅
+      </h1>
+      {recentPostList.map((item, index) => {
+        return (
+          <div
+            key={`recentPostList_${index}`}
+            className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-16 hover: cursor-pointer group"
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+            <div className="md:flex">
+              <div className="md:shrink-0">
+                <Image
+                  src={item.imageUrl}
+                  alt={item.imageAlt}
+                  width={196}
+                  height={196}
+                  priority={true}
+                  className="h-48 w-full object-cover md:h-full md:w-48"
+                />
+              </div>
+              <div className="p-8">
+                <h2 className="text-2xl font-bold mb-2 leading-tight text-gray-700 group-hover:text-gray-950">
+                  {item.title}
+                </h2>
+                <p className="mt-2 text-gray-600">{item.description}</p>
+                <p className="text-gray-400 mt-2">{item.date}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 }
