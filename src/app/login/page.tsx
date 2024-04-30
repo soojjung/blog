@@ -66,7 +66,7 @@ export default function Login() {
           </h1>
 
           <p className="text-sm leading-6 text-center font-medium text-gray-500 mb-4">
-            Don't have an account?
+            Don&apos;t have an account?
             <Link href={"/register"}>
               <span className="text-blue-500 underline">Sign Up</span>
             </Link>
