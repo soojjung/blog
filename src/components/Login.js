@@ -12,7 +12,7 @@ const LoginComponent = () => {
         Hello, {session.user.email}
         <button
           onClick={() => {
-            signOut({ callbackUrl: "http://localhost:3000/" });
+            signOut();
           }}
           className="py-2 px-4 rounded ml-2 text-white bg-rose-100 hover:bg-rose-200"
         >

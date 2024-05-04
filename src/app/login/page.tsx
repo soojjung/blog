@@ -46,8 +46,6 @@ export default function Login() {
 
     if (res?.error) {
       setError("Invalid email or password");
-
-      if (res?.url) router.replace("/dashboard");
     } else {
       setError("");
     }
@@ -88,7 +86,7 @@ export default function Login() {
 
           <button
             onClick={() => {
-              signIn("github", { callbackUrl: "http://localhost:3000/" });
+              signIn("github");
             }}
             className="flex w-full items-center justify-center gap-3 rounded-md bg-[#24292F] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F] "
           >
