@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { recentPostList } from "@/constants";
 
-export default function Home() {
+export default async function Home() {
   return (
-    <main>
+    <div>
       <h1 className="max-w-md mx-auto text-3xl font-bold text-gray-800 my-4 md:max-w-2xl">
         최근 포스팅
       </h1>
@@ -35,6 +35,6 @@ export default function Home() {
           </div>
         );
       })}
-    </main>
+    </div>
   );
 }
