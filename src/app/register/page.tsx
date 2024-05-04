@@ -69,12 +69,12 @@ const RegisterPage = () => {
       }
       if (res.status === 200) {
         setError("");
-        alert("Registration successful");
+        alert("회원가입 성공!");
         router.push("/login");
       }
     } catch (error) {
       setError("Error, try again");
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -95,7 +95,7 @@ const RegisterPage = () => {
           </h1>
 
           <p className="text-sm leading-6 text-center font-medium text-gray-500 mb-4">
-            Already have an account?
+            Already have an account?&nbsp;
             <Link href={"/login"}>
               <span className="text-blue-500 underline">Login</span>
             </Link>

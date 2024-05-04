@@ -64,7 +64,7 @@ export default function Login() {
           </h1>
 
           <p className="text-sm leading-6 text-center font-medium text-gray-500 mb-4">
-            Don&apos;t have an account?
+            Don&apos;t have an account?&nbsp;
             <Link href={"/register"}>
               <span className="text-blue-500 underline">Sign Up</span>
             </Link>
@@ -74,7 +74,7 @@ export default function Login() {
         <div className="max-w-md mx-auto mt-8">
           <button
             onClick={() => {
-              signIn("google");
+              signIn("google", { callbackUrl: process.env.NEXTAUTH_URL });
             }}
             className="flex w-full items-center border border-gray-300 justify-center gap-3 rounded-md bg-white px-3 py-1.5 text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white mb-4"
           >
@@ -86,7 +86,7 @@ export default function Login() {
 
           <button
             onClick={() => {
-              signIn("github");
+              signIn("github", { callbackUrl: process.env.NEXTAUTH_URL });
             }}
             className="flex w-full items-center justify-center gap-3 rounded-md bg-[#24292F] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F] "
           >
