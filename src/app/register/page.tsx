@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -69,7 +68,7 @@ const RegisterPage = () => {
       }
       if (res.status === 200) {
         setError("");
-        alert("회원가입 성공!");
+        alert("회원가입 성공! 로그인 화면으로 이동합니다.");
         router.push("/login");
       }
     } catch (error) {
