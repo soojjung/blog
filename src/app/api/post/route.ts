@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 import Post from "@/models/Post";
 
 export const POST = async (request: Request) => {
-  const { title, description, imageUrl, imageDesc } = await request.json();
+  const { title, description, imageUrl, imageDesc, content, writer } =
+    await request.json();
 
   await connect();
 
@@ -12,6 +13,8 @@ export const POST = async (request: Request) => {
     description,
     imageUrl,
     imageDesc,
+    content,
+    writer,
   });
 
   try {

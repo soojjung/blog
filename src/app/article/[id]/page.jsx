@@ -1,6 +1,7 @@
 import connect from "@/utils/database";
 import Post from "@/models/Post";
 import Image from "next/image";
+import dayjs from "dayjs";
 
 export default async function Article(props) {
   await connect();
@@ -19,14 +20,15 @@ export default async function Article(props) {
       <header className="max-w-lg mx-auto md:max-w-2xl mt-12">
         <h1 className="font-bold text-4xl text-gray-800">{post?.title}</h1>
         <section className="mt-4 text-gray-600 font-normal">
-          <p>정수진</p>
-          <time>{post?.createDt}</time>
+          <p>{post?.writer}</p>
+          <time>{dayjs(post?.createdAt).format("YYYY.MM.DD")}</time>
         </section>
       </header>
 
-      <div className="max-w-lg mx-auto md:max-w-2xl mt-12 text-[17px] font-light text-gray-600">
-        {post.description}
-      </div>
+      <div
+        dangerouslySetInnerHTML={{ __html: post?.content || "" }}
+        className="max-w-lg mx-auto md:max-w-2xl mt-12 text-[17px] font-light text-gray-600"
+      />
     </article>
   );
 }

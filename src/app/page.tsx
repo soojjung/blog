@@ -5,11 +5,11 @@ import Post from "@/models/Post";
 
 export default async function Home() {
   await connect();
-  const result = await Post.find({}).sort({ createdAt: -1 });
+  const result = await Post.find({}).sort({ createdAt: -1 }); // -1 최근순
 
   return (
     <div>
-      <h1 className="max-w-md mx-auto md:max-w-3xl text-3xl font-bold text-gray-800 my-4">
+      <h1 className="max-w-md mx-auto md:max-w-3xl text-3xl font-bold text-gray-800 my-5">
         최근 포스팅
       </h1>
       {result.slice(0, 3).map((item, index) => {
@@ -20,21 +20,21 @@ export default async function Home() {
           >
             <Link href="/article/[id]" as={`/article/${item._id}`}>
               <article className="md:flex">
-                <picture className="md:shrink-0">
+                <picture className="md:shrink-0 h-48">
                   <Image
                     src={item.imageUrl}
                     alt={item.imageDesc}
-                    width={196}
-                    height={196}
+                    width={192}
+                    height={192}
                     priority={true}
                     className="h-48 w-full object-cover md:h-full md:w-48"
                   />
                 </picture>
                 <section className="p-8">
-                  <h2 className="text-2xl font-bold mb-2 leading-tight text-gray-700 group-hover:text-gray-950">
+                  <h2 className="text-3xl font-bold mb-3 leading-tight text-gray-700 group-hover:text-gray-950">
                     {item.title}
                   </h2>
-                  <p className="mt-2 text-gray-600">{item.description}</p>
+                  <p className="text-gray-600">{item.description}</p>
                   <p className="text-gray-400 mt-2">{item.updateDt}</p>
                 </section>
               </article>

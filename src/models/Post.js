@@ -11,19 +11,19 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    createDt: {
-      type: String,
-      required: false,
-    },
-    updateDt: {
-      type: String,
-      required: false,
-    },
     imageUrl: {
       type: String,
       required: true,
     },
     imageDesc: {
+      type: String,
+      required: false,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    writer: {
       type: String,
       required: false,
     },

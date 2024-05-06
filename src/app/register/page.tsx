@@ -59,6 +59,7 @@ const RegisterPage = () => {
           name,
           email,
           password,
+          role: name === "정수진" ? "admin" : "guest",
         }),
       });
       if (res.status === 400) {

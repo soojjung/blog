@@ -9,7 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tiptap/extension-image": "^2.3.1",
+    "@tiptap/extension-text-align": "^2.3.1",
+    "@tiptap/pm": "^2.3.1",
+    "@tiptap/react": "^2.3.1",
+    "@tiptap/starter-kit": "^2.3.1",
     "bcrypt": "^5.1.1",
+    "dayjs": "^1.11.11",
+    "lucide-react": "^0.378.0",
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.2",
     "next": "14.2.1",

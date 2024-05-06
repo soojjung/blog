@@ -1,18 +1,38 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import Tiptap from "@/components/Tiptap";
 
 const url = "/api/post";
 
 const Article = () => {
-  const [error, setError] = useState("");
   const router = useRouter();
+  const [content, setContent] = useState("");
+  const [error, setError] = useState("");
+
+  const { data: session, status: sessionStatus } = useSession();
+
+  useEffect(() => {
+    if (sessionStatus !== "authenticated") {
+      router.replace("/");
+    }
+  }, [sessionStatus, router]);
+
+  const onChange = (content) => {
+    setContent(content);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const title = e.target[0].value;
-    const description = e.target[1].value;
+
+    if (!content) {
+      setError("내용을 입력해주세요.");
+      return;
+    }
 
     try {
       const res = await fetch(url, {
@@ -22,9 +42,11 @@ const Article = () => {
         },
         body: JSON.stringify({
           title,
-          description,
+          description: "오늘 배운 내용을 간략하게 소개하겠습니다.",
           imageUrl: "/images/donut.jpeg",
           imageDesc: "donut",
+          content: content,
+          writer: session.user?.name || "",
         }),
       });
 
@@ -35,6 +57,7 @@ const Article = () => {
       if (res.status === 200) {
         setError("");
         alert("등록되었습니다.");
+        // setTimeout(() => router.prefetch("/"), 0);
         router.push("/");
       }
     } catch (error) {
@@ -43,9 +66,13 @@ const Article = () => {
     }
   };
 
+  if (sessionStatus === "loading") {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <div>
-      <h1 className="max-w-md mx-auto md:max-w-3xl text-3xl font-bold text-gray-800 my-4">
+      <h1 className="max-w-md mx-auto md:max-w-3xl text-3xl font-bold text-gray-800 my-5">
         블로그
       </h1>
       <div className="max-w-md mx-auto md:max-w-3xl overflow-hidden mt-16">
@@ -64,16 +91,18 @@ const Article = () => {
           />
 
           <label
-            htmlFor="description"
+            htmlFor="content"
             className="text-xl font-bold text-gray-800 my-4 md:max-w-2xl leading-10"
           >
             내용
           </label>
-          <input
-            id="description"
-            name="description"
+          <Tiptap
+            id="content"
+            name="content"
+            onChange={onChange}
+            content={content}
             required
-            className="block w-full rounded-md border-0 p-2 py-1.5 mb-4 text-[15px] text-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+            className="rounded-md border min-h-[150px] border-input disabled:cursor-not-allowed disabled:opacity-50"
           />
 
           <button
