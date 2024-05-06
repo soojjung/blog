@@ -5,20 +5,20 @@ import Post from "@/models/Post";
 
 export default async function Home() {
   await connect();
-  const result = await Post.find({});
+  const result = await Post.find({}).sort({ createdAt: -1 });
 
   return (
     <div>
       <h1 className="max-w-md mx-auto md:max-w-3xl text-3xl font-bold text-gray-800 my-4">
         최근 포스팅
       </h1>
-      {result.map((item, index) => {
+      {result.slice(0, 3).map((item, index) => {
         return (
           <div
             key={`recent_post_list_${index}`}
             className="max-w-md mx-auto md:max-w-3xl bg-white rounded-xl shadow-md overflow-hidden mt-16 hover: cursor-pointer group"
           >
-            <Link href={`/article/${item._id}`}>
+            <Link href="/article/[id]" as={`/article/${item._id}`}>
               <article className="md:flex">
                 <picture className="md:shrink-0">
                   <Image

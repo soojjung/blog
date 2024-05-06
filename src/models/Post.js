@@ -9,7 +9,7 @@ const postSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: false,
+      required: true,
     },
     createDt: {
       type: String,
@@ -21,7 +21,7 @@ const postSchema = new mongoose.Schema(
     },
     imageUrl: {
       type: String,
-      required: false,
+      required: true,
     },
     imageDesc: {
       type: String,
