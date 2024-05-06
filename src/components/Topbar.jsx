@@ -24,7 +24,7 @@ const Topbar = () => {
             </Link>
           </li>
           <li className="py-3 px-4 rounded text-gray-500 hover:text-gray-600 hover:bg-gray-50 hover:cursor-pointer">
-            <Link href={"/blog"}>
+            <Link href={"/article"}>
               <span>블로그</span>
             </Link>
           </li>
