@@ -2,6 +2,7 @@ import connect from "@/utils/database";
 import Post from "@/models/Post";
 import Image from "next/image";
 import dayjs from "dayjs";
+import Tiptap from "@/components/Tiptap";
 
 export default async function Article(props) {
   await connect();
@@ -25,9 +26,13 @@ export default async function Article(props) {
         </section>
       </header>
 
-      <div
-        dangerouslySetInnerHTML={{ __html: post?.content || "" }}
-        className="max-w-lg mx-auto md:max-w-2xl mt-12 text-[17px] font-light text-gray-600"
+      <Tiptap
+        id="content"
+        name="content"
+        content={post.content}
+        required
+        editable={false}
+        className="max-w-lg mx-auto md:max-w-2xl mt-12 text-[17px] font-light text-gray-900"
       />
     </article>
   );

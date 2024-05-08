@@ -102,6 +102,7 @@ const Article = () => {
             onChange={onChange}
             content={content}
             required
+            editable={true}
             className="rounded-md border min-h-[150px] border-input disabled:cursor-not-allowed disabled:opacity-50"
           />
 
