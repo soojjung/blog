@@ -20,9 +20,15 @@ export const POST = async (request: Request) => {
   try {
     await newPost.save();
     return new NextResponse("저장완료", { status: 200 });
-  } catch (err: any) {
-    return new NextResponse(err, {
-      status: 500,
-    });
+  } catch (error: any) {
+    console.error(error.errmsg || "Error saving article");
+    return NextResponse.json(
+      {
+        error: error.errmsg || "Error saving article",
+      },
+      {
+        status: 500,
+      }
+    );
   }
 };

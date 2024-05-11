@@ -57,8 +57,8 @@ const Article = () => {
       if (res.status === 200) {
         setError("");
         alert("등록되었습니다.");
-        // setTimeout(() => router.prefetch("/"), 0);
-        router.push("/");
+        router.prefetch("/");
+        setTimeout(() => router.push("/"), 0);
       }
     } catch (error) {
       setError("Error, try again");
