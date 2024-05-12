@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Tiptap from "@/components/Tiptap";
+import { images } from "@/constants/images";
 
 const url = "/api/article/post";
 
@@ -42,6 +43,12 @@ const Article = () => {
       .slice(0, 2)
       .join(".");
 
+    const randomInteger = Math.floor(Math.random() * images.length);
+
+    if (!images[randomInteger]) {
+      setError("썸네일 이미지가 없습니다.");
+    }
+
     try {
       const res = await fetch(url, {
         method: "POST",
@@ -51,8 +58,8 @@ const Article = () => {
         body: JSON.stringify({
           title,
           description: description,
-          imageUrl: "/images/donut.jpeg",
-          imageDesc: "donut",
+          imageUrl: "/images/" + images[randomInteger],
+          imageDesc: images[randomInteger],
           content: content,
           writer: session.user?.name || "",
         }),
