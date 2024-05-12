@@ -2,7 +2,7 @@ import Image from "next/image";
 import dayjs from "dayjs";
 import connect from "@/utils/database";
 import Post from "@/models/Post";
-import EditArticleForm from "@/components/EditArticleform";
+import EditArticleForm from "@/components/EditArticleForm";
 
 export default async function EditArticle(props) {
   await connect();
