@@ -17,7 +17,7 @@ export default async function Home() {
         return (
           <div
             key={`recent_post_list_${index}`}
-            className="max-w-md mx-auto md:max-w-3xl bg-white rounded-xl shadow-md overflow-hidden mt-16 hover: cursor-pointer group"
+            className="max-w-md mx-auto md:max-w-3xl bg-white rounded-xl shadow-md overflow-hidden mt-16 first-of-type:mt-12 hover: cursor-pointer group"
           >
             <Link href="/article/[id]" as={`/article/${item._id}`}>
               <article className="md:flex">

@@ -36,6 +36,12 @@ const Article = () => {
       return;
     }
 
+    const description = content
+      .replace(/<[^>]*>/g, "")
+      .split(".")
+      .slice(0, 2)
+      .join(".");
+
     try {
       const res = await fetch(url, {
         method: "POST",
@@ -44,7 +50,7 @@ const Article = () => {
         },
         body: JSON.stringify({
           title,
-          description: "오늘 배운 내용을 간략하게 소개하겠습니다.",
+          description: description,
           imageUrl: "/images/donut.jpeg",
           imageDesc: "donut",
           content: content,
@@ -77,11 +83,11 @@ const Article = () => {
       <h1 className="max-w-md mx-auto md:max-w-3xl text-3xl font-bold text-gray-800 my-5">
         새 포스팅
       </h1>
-      <div className="max-w-md mx-auto md:max-w-3xl overflow-hidden mt-16">
+      <div className="max-w-md mx-auto md:max-w-3xl overflow-hidden mt-12">
         <form onSubmit={handleSubmit}>
           <label
             htmlFor="title"
-            className="text-xl font-bold text-gray-800 my-4 md:max-w-2xl leading-10"
+            className="text-2xl font-bold text-gray-800 my-4 md:max-w-2xl leading-10"
           >
             제목
           </label>
@@ -90,12 +96,12 @@ const Article = () => {
             name="title"
             required
             maxLength={30}
-            className="block w-full rounded-md border-0 p-2 px-4 mb-4 text-[17px] text-gray-800 font-light shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 p-4 mb-4 text-lg text-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-lg sm:leading-6"
           />
 
           <label
             htmlFor="content"
-            className="text-xl font-bold text-gray-800 my-4 md:max-w-2xl leading-10"
+            className="text-2xl font-bold text-gray-800 my-4 md:max-w-2xl leading-10"
           >
             내용
           </label>
