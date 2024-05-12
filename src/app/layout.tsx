@@ -8,8 +8,17 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "수야 기술 블로그",
-  description: "프론트엔드 정수진 기술 블로그",
+  title: "프론트엔드 정수진 기술 블로그",
+  description: "배운것을 까먹지 않으려는 기록장",
+  category: "technology",
+  openGraph: {
+    title: "프론트엔드 정수진 기술 블로그",
+    description: "배운것을 까먹지 않으려는 기록장",
+    url: "https://sooya.dev",
+    siteName: "수야 기술 블로그",
+    type: "website",
+  },
+  authors: [{ name: "Soojin" }],
 };
 
 export default async function RootLayout({
