@@ -8,8 +8,10 @@ const LoginComponent = () => {
 
   if (session) {
     return (
-      <span className="flex items-center ml-2 text-gray-700">
-        Hello, {session.user.email}
+      <div className="flex items-center ml-2 text-gray-700">
+        <span className="hidden sm:inline-block">
+          Hello, {session.user.email}
+        </span>
         <button
           onClick={() => {
             signOut({ callbackUrl: process.env.NEXTAUTH_URL });
@@ -18,7 +20,7 @@ const LoginComponent = () => {
         >
           로그아웃
         </button>
-      </span>
+      </div>
     );
   }
 

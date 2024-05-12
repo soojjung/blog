@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Tiptap from "@/components/Tiptap";
-import { FcOk, FcEmptyTrash } from "react-icons/fc";
+import { FcOk, FcEmptyTrash, FcUndo } from "react-icons/fc";
 
 const EditArticleForm = ({
   _id,
@@ -71,32 +72,34 @@ const EditArticleForm = ({
   const onClickDelete = async (e) => {
     e.preventDefault();
 
-    try {
-      const res = await fetch("/api/article/delete", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          _id,
-        }),
-      });
-      if (res.status === 400) {
-        alert(res.statusText + ": id가 존재하지 않습니다.");
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      try {
+        const res = await fetch("/api/article/delete", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            _id,
+          }),
+        });
+        if (res.status === 400) {
+          alert(res.statusText + ": id가 존재하지 않습니다.");
+        }
+        if (res.status === 200) {
+          alert("삭제되었습니다.");
+          router.prefetch("/");
+          setTimeout(() => router.push("/"), 0);
+        }
+      } catch (error) {
+        console.error(error);
       }
-      if (res.status === 200) {
-        alert("삭제되었습니다.");
-        router.prefetch("/");
-        setTimeout(() => router.push("/"), 0);
-      }
-    } catch (error) {
-      console.error(error);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <header className="max-w-lg mx-auto md:max-w-2xl mt-8">
+      <header className="max-w-lg mx-auto md:max-w-2xl mt-10">
         <input
           id="title"
           name="title"
@@ -105,9 +108,9 @@ const EditArticleForm = ({
           className="block w-full rounded-md border-0 p-3 font-bold text-3xl text-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset"
         />
 
-        <section className="mt-4 text-gray-600 font-normal">
-          <p>{writer}</p>
-          <time>{createdAt}</time>
+        <section className="mt-8 text-gray-600 font-normal">
+          <p>Writer: {writer}</p>
+          <time>Date: {createdAt}</time>
         </section>
       </header>
 
@@ -123,6 +126,13 @@ const EditArticleForm = ({
       </section>
 
       <section className="flex justify-end mt-8">
+        <Link
+          href={"/article/" + _id}
+          className="flex align-middle items-center py-2.5 px-4 mr-4 rounded text-blue-400 border border-blue-400 hover:text-white hover:bg-blue-400"
+        >
+          <FcUndo size={20} />
+          <span className="ml-1">취소하기</span>
+        </Link>
         <button
           type="button"
           onClick={onClickDelete}
