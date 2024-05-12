@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import dayjs from "dayjs";
 import connect from "@/utils/database";
 import Post from "@/models/Post";
 
@@ -30,12 +31,16 @@ export default async function Home() {
                     className="h-48 w-full object-cover md:h-full md:w-48"
                   />
                 </picture>
-                <section className="p-8">
+                <section className="p-8 md:h-48 w-full">
                   <h2 className="text-3xl font-bold mb-3 leading-tight text-gray-700 group-hover:text-gray-950">
                     {item.title}
                   </h2>
-                  <p className="text-gray-600">{item.description}</p>
-                  <p className="text-gray-400 mt-2">{item.updateDt}</p>
+                  <p className="mb-3 md:h-12 text-gray-600 truncate-2-lines">
+                    {item.description}
+                  </p>
+                  <time className="text-gray-400 mt-2">
+                    {dayjs(item?.createdAt).format("YYYY.MM.DD")}
+                  </time>
                 </section>
               </article>
             </Link>

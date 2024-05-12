@@ -24,5 +24,14 @@
     @apply pl-4;
   }
 
+  .truncate-2-lines {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }
+
   /* ... */
 }

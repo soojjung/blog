@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Tiptap from "@/components/Tiptap";
 
-const url = "/api/post";
+const url = "/api/article/post";
 
 const Article = () => {
   const router = useRouter();
@@ -75,7 +75,7 @@ const Article = () => {
   return (
     <div>
       <h1 className="max-w-md mx-auto md:max-w-3xl text-3xl font-bold text-gray-800 my-5">
-        블로그
+        새 포스팅
       </h1>
       <div className="max-w-md mx-auto md:max-w-3xl overflow-hidden mt-16">
         <form onSubmit={handleSubmit}>
@@ -83,12 +83,13 @@ const Article = () => {
             htmlFor="title"
             className="text-xl font-bold text-gray-800 my-4 md:max-w-2xl leading-10"
           >
-            글 제목
+            제목
           </label>
           <input
             id="title"
             name="title"
             required
+            maxLength={30}
             className="block w-full rounded-md border-0 p-2 px-4 mb-4 text-[17px] text-gray-800 font-light shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
           />
 
@@ -105,7 +106,6 @@ const Article = () => {
             content={content}
             required
             editable={true}
-            className="rounded-md border min-h-[150px] border-input disabled:cursor-not-allowed disabled:opacity-50"
           />
 
           <button
