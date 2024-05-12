@@ -14,8 +14,10 @@ const authOptions: any = {
       id: "credentials",
       name: "Credentials",
       credentials: {
+        name: { label: "Name", type: "text" },
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
+        role: { label: "Role", type: "text" },
       },
       // 2. 로그인요청시 실행되는코드
       async authorize(credentials: any) {
@@ -47,8 +49,24 @@ const authOptions: any = {
       clientSecret: process.env.GOOGLE_SECRET as string,
     }),
   ],
+  session: {
+    strategy: "jwt",
+    maxAge: 60 * 60 * 24 * 30, // 30 days
+  },
 
   callbacks: {
+    async jwt({ token, user }: { token: any; user: any }) {
+      if (user) {
+        token.role = user.role;
+      }
+      return token;
+    },
+
+    async session({ session, token }: { session: any; token: any }) {
+      session.user.role = token.role;
+      return session;
+    },
+
     async signIn({ user, account }: { user: AuthUser; account: Account }) {
       if (account?.provider == "credentials") {
         return true;
@@ -67,7 +85,7 @@ const authOptions: any = {
           }
           return true;
         } catch (err) {
-          console.log("Error saving user", err);
+          console.error("Error saving user", err);
           return false;
         }
       }
@@ -86,7 +104,7 @@ const authOptions: any = {
           }
           return true;
         } catch (err) {
-          console.log("Error saving user", err);
+          console.error("Error saving user", err);
           return false;
         }
       }

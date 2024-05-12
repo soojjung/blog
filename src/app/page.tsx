@@ -1,37 +1,49 @@
+import Link from "next/link";
 import Image from "next/image";
-import { recentPostList } from "@/constants";
+import dayjs from "dayjs";
+import connect from "@/utils/database";
+import Post from "@/models/Post";
 
 export default async function Home() {
+  await connect();
+  const result = await Post.find({}).sort({ createdAt: -1 }); // -1 최근순
+
   return (
     <div>
-      <h1 className="max-w-md mx-auto text-3xl font-bold text-gray-800 my-4 md:max-w-2xl">
+      <h1 className="max-w-md mx-auto md:max-w-3xl text-3xl font-bold text-gray-800 my-5">
         최근 포스팅
       </h1>
-      {recentPostList.map((item, index) => {
+      {result.slice(0, 3).map((item, index) => {
         return (
           <div
-            key={`recentPostList_${index}`}
-            className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-16 hover: cursor-pointer group"
+            key={`recent_post_list_${index}`}
+            className="max-w-md mx-auto md:max-w-3xl bg-white rounded-xl shadow-md overflow-hidden mt-16 hover: cursor-pointer group"
           >
-            <article className="md:flex">
-              <picture className="md:shrink-0">
-                <Image
-                  src={item.imageUrl}
-                  alt={item.imageAlt}
-                  width={196}
-                  height={196}
-                  priority={true}
-                  className="h-48 w-full object-cover md:h-full md:w-48"
-                />
-              </picture>
-              <section className="p-8">
-                <h2 className="text-2xl font-bold mb-2 leading-tight text-gray-700 group-hover:text-gray-950">
-                  {item.title}
-                </h2>
-                <p className="mt-2 text-gray-600">{item.description}</p>
-                <p className="text-gray-400 mt-2">{item.date}</p>
-              </section>
-            </article>
+            <Link href="/article/[id]" as={`/article/${item._id}`}>
+              <article className="md:flex">
+                <picture className="md:shrink-0 h-48">
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.imageDesc}
+                    width={192}
+                    height={192}
+                    priority={true}
+                    className="h-48 w-full object-cover md:h-full md:w-48"
+                  />
+                </picture>
+                <section className="p-8 md:h-48 w-full">
+                  <h2 className="text-3xl font-bold mb-3 leading-tight text-gray-700 group-hover:text-gray-950">
+                    {item.title}
+                  </h2>
+                  <p className="mb-3 md:h-12 text-gray-600 truncate-2-lines">
+                    {item.description}
+                  </p>
+                  <time className="text-gray-400 mt-2">
+                    {dayjs(item?.createdAt).format("YYYY.MM.DD")}
+                  </time>
+                </section>
+              </article>
+            </Link>
           </div>
         );
       })}

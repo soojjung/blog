@@ -1,11 +1,11 @@
-import User from "@/models/User";
 import connect from "@/utils/database";
+import User from "@/models/User";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 
 // 2. 서버는 가입 요청 받으면 DB에 저장해준다.
 export const POST = async (request: Request) => {
-  const { name, email, password } = await request.json();
+  const { name, email, password, role } = await request.json();
 
   await connect();
 
@@ -20,6 +20,7 @@ export const POST = async (request: Request) => {
     name,
     email,
     password: hashedPassword,
+    role,
   });
 
   try {

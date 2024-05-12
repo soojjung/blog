@@ -4,9 +4,9 @@ const connect = async () => {
   if (mongoose.connections[0].readyState) return;
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI || "", {});
-    // await mongoose.connection.db.admin().command({ ping: 1 });
-    console.log("Mongo Connection successfully established.");
+    await mongoose.connect(process.env.MONGODB_URI || "", {
+      dbName: process.env.DB_NAME,
+    });
   } catch (error) {
     throw new Error("Error connecting to Mongoose");
   }
