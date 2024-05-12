@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 import User from "@/models/User";
 import connect from "@/utils/database";
 
-export const authOptions: any = {
+const authOptions: any = {
   providers: [
     // 1. 로그인페이지 폼 자동생성해주는 코드
     CredentialsProvider({
