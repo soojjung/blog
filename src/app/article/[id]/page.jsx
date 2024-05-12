@@ -29,7 +29,7 @@ export default async function Article(props) {
       <Tiptap
         id="content"
         name="content"
-        content={post.content}
+        content={post?.content}
         required
         editable={false}
         className="max-w-lg mx-auto md:max-w-2xl mt-12 text-[17px] font-light text-gray-900"

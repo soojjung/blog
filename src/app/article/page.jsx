@@ -13,12 +13,14 @@ const Article = () => {
   const [error, setError] = useState("");
 
   const { data: session, status: sessionStatus } = useSession();
+  const userRole = session?.user?.role;
 
   useEffect(() => {
-    if (sessionStatus !== "authenticated") {
+    if (sessionStatus !== "authenticated" || userRole !== "admin") {
+      alert("글 작성 권한이 없습니다.");
       router.replace("/");
     }
-  }, [sessionStatus, router]);
+  }, [sessionStatus, router, userRole]);
 
   const onChange = (content) => {
     setContent(content);
@@ -87,7 +89,7 @@ const Article = () => {
             id="title"
             name="title"
             required
-            className="block w-full rounded-md border-0 p-2 py-1.5 mb-4 text-[15px] text-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 p-2 px-4 mb-4 text-[17px] text-gray-800 font-light shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
           />
 
           <label

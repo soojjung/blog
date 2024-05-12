@@ -14,13 +14,13 @@ const Tiptap = ({
   const editStyle = {
     attributes: {
       class:
-        "flex flex-col px-5 py-5 justify-start text-[17px] font-light text-gray-900 items-start w-full pt-4 rounded-bl-md rounded-br-md outline-none min-h-[250px] border-b border-r border-l border-gray-300 ",
+        "flex flex-col px-4 py-5 justify-start text-[17px] font-light text-gray-900 items-start w-full pt-4 rounded-bl-md rounded-br-md outline-none min-h-[250px] border-b border-r border-l border-gray-300 ",
     },
   };
   const viewStyle = {
     attributes: {
       class:
-        "text-[17px] font-light text-gray-900 items-start w-full pt-4 outline-none ",
+        "items-start w-full pt-4 outline-none text-[17px] font-light text-gray-900",
     },
   };
 

@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 import User from "@/models/User";
 import connect from "@/utils/database";
 
-const authOptions: any = {
+export const authOptions: any = {
   providers: [
     // 1. 로그인페이지 폼 자동생성해주는 코드
     CredentialsProvider({
@@ -51,20 +51,21 @@ const authOptions: any = {
   ],
   session: {
     strategy: "jwt",
-    // Seconds - How long until an idle ses
     maxAge: 60 * 60 * 24 * 30, // 30 days
   },
+
   callbacks: {
-    // The return type will match the one returned in `useSession()`
-    // session: ({ session, token, user }) => {
-    //   return {
-    //     ...session,
-    //     user: {
-    //       ...session.user,
-    //       id: token.sub,
-    //     },
-    //   };
-    // },
+    async jwt({ token, user }: { token: any; user: any }) {
+      if (user) {
+        token.role = user.role;
+      }
+      return token;
+    },
+
+    async session({ session, token }: { session: any; token: any }) {
+      session.user.role = token.role;
+      return session;
+    },
 
     async signIn({ user, account }: { user: AuthUser; account: Account }) {
       if (account?.provider == "credentials") {
