@@ -72,26 +72,28 @@ const EditArticleForm = ({
   const onClickDelete = async (e) => {
     e.preventDefault();
 
-    try {
-      const res = await fetch("/api/article/delete", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          _id,
-        }),
-      });
-      if (res.status === 400) {
-        alert(res.statusText + ": id가 존재하지 않습니다.");
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      try {
+        const res = await fetch("/api/article/delete", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            _id,
+          }),
+        });
+        if (res.status === 400) {
+          alert(res.statusText + ": id가 존재하지 않습니다.");
+        }
+        if (res.status === 200) {
+          alert("삭제되었습니다.");
+          router.prefetch("/");
+          setTimeout(() => router.push("/"), 0);
+        }
+      } catch (error) {
+        console.error(error);
       }
-      if (res.status === 200) {
-        alert("삭제되었습니다.");
-        router.prefetch("/");
-        setTimeout(() => router.push("/"), 0);
-      }
-    } catch (error) {
-      console.error(error);
     }
   };
 
