@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 수야 기술 블로그
 
-## Getting Started
+개발 관련하여 새로 알게 된 내용을 정리하고 공유하는 블로그 형식의 프로젝트
 
-First, run the development server:
+배포 링크: https://www.sooya.dev
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<img src="./readme/mainpage.png" alt="logo">
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 설치 및 사용법
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+프로젝트를 로컬에서 실행하기 위해선 다음 스텝을 따라주세요.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. 레포지토리 클론 `git clone https://github.com/soojjung/blog`
+2. 터미널에 `npm install` 입력하여 dependencies 설치
+3. root directory에 `.env.local` 파일 생성 후 `.env`와 동일한 변수들 세팅
+4. [http://localhost:3000](http://localhost:3000) 을 브라우저에서 열어줍니다.
 
-## Learn More
+## **주요 특징**
 
-To learn more about Next.js, take a look at the following resources:
+- Next-auth 회원인증기능을 활용한 소셜로그인, 로그인, 회원가입 구현
+- Next.js의 File-based Routing(app 폴더)과 Built-in API Routes
+- MongoDB(w/Mongoose)를 사용하여 블로그 글 CRUD 기능
+- Tailwind CSS로 반응형 UI 구현
+- 노션 스타일의 Tiptap 웹 에디터로 블로그 글 작성
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 사용한 스택
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- React
+- TypeScript
+- Next.js
+- Next-auth
+- MongoDB (w/Mongoose)
+- Tailwind CSS
+- Vercel
 
-## Deploy on Vercel
+## **Contributing**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+버그나 결함이 있을 수 있습니다! 버그 발견시 issue에 달아주시면 반영하도록 하겠습니다! 감사합니다 🙂
