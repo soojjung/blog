@@ -2,7 +2,7 @@
 
 개발 관련하여 새로 알게 된 내용을 정리하고 공유하는 블로그 형식의 프로젝트
 
-배포 링크: https://www.sooya.dev
+배포 링크: https://blog-soojjungs-projects.vercel.app/
 
 <img src="./readme/mainpage.png" alt="logo">
 
